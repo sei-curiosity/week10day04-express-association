@@ -121,13 +121,13 @@ How would you design the following? Draw an ERD for each set of related data? Ca
 1. `mkdir mongoose-associations-app` and `cd` into it
 1. `npm init -y`
 1. `npm i express mongoose`
-1. `touch server.js`
+1. `touch index.js`
 
 <br>
 
 ## Build Express Server
 
-`server.js`
+`index.js`
 
 ```js
 const express = require('express');
@@ -210,7 +210,7 @@ Check out the value associated with the `ingredients` key inside the food schema
 <br>
 
 ## Seed file
-Let's create a `seeds.js` file. Here's how we'd take our models for a spin and make two objects to test out creating a Ingredient document and Food document.
+Let's create a `seeds.js` file. Here's how we'd take our models for a spin and make two objects to test out creating an Ingredient document and Food document.
 
 ```js
 let mongoose = require("mongoose");
@@ -274,7 +274,7 @@ cheesyQuiche.save(function (err, savedCheesyQuiche) {
 
 ![](https://i.imgur.com/J6mO3TE.png)
 
-- A lot of this set-up is also in the `server.js` file. That's ok.
+- A lot of this set-up is also in the `index.js` file. That's ok.
 
 
 Note that we push the `cheddar` ingredient document into the `cheesyQuiche` ingredients array. We already told the Food Schema that we will only be storing ObjectIds, though, so `cheddar` gets converted to its unique `_id` when it's pushed in!
@@ -290,7 +290,7 @@ When we want to get full information from an `Ingredient` document we have insid
 We'll test out this code in a file called `test.js`.
 
 1. `touch test.js`
-2. After adding the code below, run `node test.js`
+2. After adding the code below, run `nodemon test.js`
 
 
 ```js
@@ -299,7 +299,7 @@ let mongoose = require("mongoose");
 let Food = require('./models/food');
 let Ingredient = require('./models/ingredient');
 
-const mongoURI = 'mongodb://localhost:27017/mongooseAssociationsInClass';
+const mongoURI = 'mongodb://localhost/mongooseAssociationsInClass';
 mongoose.connect(mongoURI, { useNewUrlParser: true }, () => {
   console.log('the connection with mongod is established')
 });
@@ -365,7 +365,7 @@ When you need full information about a food, remember to pull ingredient data in
 
 **INDEX of all foods**
 
-`server.js`
+`index.js`
 
 ```js
 let Food = require('./models/food');
@@ -484,7 +484,7 @@ module.exports = { User, Tweet }
 
 **CREATE USER**
 
-`server.js`
+`index.js`
 
 ```js
 let User = require('./models/user').User
