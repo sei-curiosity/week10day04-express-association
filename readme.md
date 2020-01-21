@@ -353,9 +353,8 @@ Tasks:
 In the seeds
 
 1. Create 3 ingredients.  
-2. Create a food that references those ingredients.  
-3. List all the foods.  
-4. List all the ingredient data for a food.
+2. Create a food that references those ingredients.   
+3. List all the ingredient data for the newly created food.
 
 
 
