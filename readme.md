@@ -245,7 +245,7 @@ cheddar.save(function (err, savedCheese) {
   }
 });
 
-dough.save((err, savedCheese) => {
+dough.save((err, savedDough) => {
   if (err) {
     console.log(err)
   } else {
