@@ -158,10 +158,10 @@ app.listen(3000, () => {
 `ingredient.js`
 
 ```javascript
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 
-var ingredientSchema = new Schema({
+let ingredientSchema = new Schema({
   name: {
     type: String,
     default: ""
@@ -172,7 +172,7 @@ var ingredientSchema = new Schema({
   }
 })
 
-var Ingredient = mongoose.model("Ingredient", ingredientSchema);
+let Ingredient = mongoose.model("Ingredient", ingredientSchema);
 
 module.exports = Ingredient
 ```
@@ -180,10 +180,10 @@ module.exports = Ingredient
 `food.js`
 
 ```js
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 
-var foodSchema = new Schema({
+let foodSchema = new Schema({
   name: {
     type: String,
     default: ""
@@ -194,7 +194,7 @@ var foodSchema = new Schema({
   }]
 });
 
-var Food = mongoose.model("Food", foodSchema);
+let Food = mongoose.model("Food", foodSchema);
 
 module.exports = Food
 ```
@@ -213,11 +213,11 @@ Check out the value associated with the `ingredients` key inside the food schema
 Let's create a `seeds.js` file. Here's how we'd take our models for a spin and make two objects to test out creating a Ingredient document and Food document.
 
 ```js
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 
-var Food = require('./models/food');
-var Ingredient = require('./models/ingredient');
+let Food = require('./models/food');
+let Ingredient = require('./models/ingredient');
 
 const mongoURI = 'mongodb://localhost/mongoRelationships';
 mongoose.connect(mongoURI, { useNewUrlParser: true }, () => {
@@ -225,12 +225,12 @@ mongoose.connect(mongoURI, { useNewUrlParser: true }, () => {
 });
 
 // CREATE TWO INGREDIENTS
-var cheddar = new Ingredient({
+let cheddar = new Ingredient({
   name: 'cheddar cheese',
   origin: 'Wisconson'
 });
 
-var dough = new Ingredient({
+let dough = new Ingredient({
   name: 'dough',
   origin: 'Iowa'
 });
@@ -254,7 +254,7 @@ dough.save((err, savedCheese) => {
 })
 
 // CREATE A NEW FOOD
-var cheesyQuiche = new Food({
+let cheesyQuiche = new Food({
   name: 'Quiche',
   ingredients: []
 });
@@ -294,10 +294,10 @@ We'll test out this code in a file called `test.js`.
 
 
 ```js
-var mongoose = require("mongoose");
+let mongoose = require("mongoose");
 
-var Food = require('./models/food');
-var Ingredient = require('./models/ingredient');
+let Food = require('./models/food');
+let Ingredient = require('./models/ingredient');
 
 const mongoURI = 'mongodb://localhost:27017/mongooseAssociationsInClass';
 mongoose.connect(mongoURI, { useNewUrlParser: true }, () => {
@@ -368,8 +368,8 @@ When you need full information about a food, remember to pull ingredient data in
 `server.js`
 
 ```js
-var Food = require('./models/food');
-var Ingredient = require('./models/ingredient');
+let Food = require('./models/food');
+let Ingredient = require('./models/ingredient');
 
 	...
 	
@@ -417,15 +417,15 @@ Imagine you have a database of `User`s, each with many embedded `Tweet`s. If you
 1. 	`touch models/user.js`	
 
 ```js
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 
-var tweetSchema = new Schema({
+let tweetSchema = new Schema({
   text: String,
   date: Date
 });
 
-var userSchema = new Schema({
+let userSchema = new Schema({
   name: String,
   // embed tweets in user
   tweets: [tweetSchema]
@@ -437,8 +437,8 @@ The `tweets: [tweetSchema]` line sets up the embedded data association. The `[]`
 #### 2) Manipulate Data with Models
 
 ```js
-var User = mongoose.model("User", userSchema);
-var Tweet = mongoose.model("Tweet", tweetSchema);
+let User = mongoose.model("User", userSchema);
+let Tweet = mongoose.model("Tweet", tweetSchema);
 ```
 
 #### 3) Export Models
@@ -451,14 +451,14 @@ module.exports = { User, Tweet }
 	<summary>Completed User model file</summary>
 	
 ```js
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 	
-var tweetSchema = new Schema({
+let tweetSchema = new Schema({
   tweetText: String
 }, { timestamps: true });
 	
-var userSchema = new Schema({
+let userSchema = new Schema({
   name: {
     type: String,
     default: ""
@@ -466,8 +466,8 @@ var userSchema = new Schema({
   tweets: [tweetSchema]
 }, { timestamps: true });
 	
-var User = mongoose.model("User", userSchema);
-var Tweet = mongoose.model("Tweet", tweetSchema);
+let User = mongoose.model("User", userSchema);
+let Tweet = mongoose.model("Tweet", tweetSchema);
 	
 module.exports = { User, Tweet }	
 ```
@@ -487,8 +487,8 @@ module.exports = { User, Tweet }
 `server.js`
 
 ```js
-var User = require('./models/user').User
-var Tweet = require('./models/user').Tweet
+let User = require('./models/user').User
+let Tweet = require('./models/user').Tweet
 
 	...
 	
@@ -511,7 +511,7 @@ app.post('/api/users', (req, res) => {
 // create tweet embedded in user
 app.post('/api/users/:userId/tweets', (req, res) => {
   // store new tweet in memory with data from request body
-  var newTweet = new Tweet({ tweetText: req.body.tweetText });
+  let newTweet = new Tweet({ tweetText: req.body.tweetText });
 
   // find user in db by id and add new tweet
   User.findById(req.params.userId, (error, foundUser) => {
@@ -529,13 +529,13 @@ app.post('/api/users/:userId/tweets', (req, res) => {
 // update tweet embedded in user
 app.put('/api/users/:userId/tweets/:id', (req, res) => {
   // set the value of the user and tweet ids
-  var userId = req.params.userId;
-  var tweetId = req.params.id;
+  let userId = req.params.userId;
+  let tweetId = req.params.id;
 
   // find user in db by id
   User.findById(userId, (err, foundUser) => {
     // find tweet embedded in user
-    var foundTweet = foundUser.tweets.id(tweetId);
+    let foundTweet = foundUser.tweets.id(tweetId);
     // update tweet text and completed with data from request body
     foundTweet.tweetText = req.body.tweetText;
     foundUser.save((err, savedUser) => {
