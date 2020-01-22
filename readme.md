@@ -237,21 +237,11 @@ let dough = new Ingredient({
 
 // SAVE THE TWO INGREDIENTS SO 
 // WE HAVE ACCESS TO THEIR _IDS
-cheddar.save(function (err, savedCheese) {
-  if (err) {
-    return console.log(err);
-  } else {
-    console.log('cheddar saved successfully');
-  }
-});
+cheddar.save().then((savedCheese)=> {console.log('cheddar saved successfully')})
+.catch((err) => {console.log(err)})
 
-dough.save((err, savedDough) => {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log('dough saved successfully');
-  }
-})
+dough.save().then((savedDough)=> {console.log('dough saved successfully')})
+.catch((err) => {console.log(err)})
 
 // CREATE A NEW FOOD
 let cheesyQuiche = new Food({
@@ -263,13 +253,10 @@ let cheesyQuiche = new Food({
 // INGREDIENTS ARRAY
 cheesyQuiche.ingredients.push(cheddar);   // associated!
 cheesyQuiche.ingredients.push(dough);
-cheesyQuiche.save(function (err, savedCheesyQuiche) {
-  if (err) {
-    return console.log(err);
-  } else {
-    console.log('cheesyQuiche food is ', savedCheesyQuiche);
-  }
-});
+
+cheesyQuiche.save().then((savedCheesyQuiche)=> {console.log('cheesyQuiche food is ', savedCheesyQuiche)})
+.catch((err) => {console.log(err)})
+
 ```
 
 ![](https://i.imgur.com/J6mO3TE.png)
