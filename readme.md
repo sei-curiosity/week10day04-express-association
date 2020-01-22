@@ -553,7 +553,7 @@ app.put('/api/users/:userId/tweets/:id', (req, res) => {
 ```
 </details>
 
-- Refactor the routes into individual controller files using [express.Router()](https://expressjs.com/en/guide/routing.html)
+**Refactor the routes into individual controller files using [express.Router()](https://expressjs.com/en/guide/routing.html)
 
 ### Route Design
 
