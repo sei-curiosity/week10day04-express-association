@@ -402,6 +402,9 @@ Imagine you have a database of `User`s, each with many embedded `Tweet`s. If you
 
 #### 1) Set Up Structure with Schemas
 
+<details>
+	<summary>Solution</summary>
+		
 1. 	`touch models/user.js`	
 
 ```js
@@ -422,12 +425,17 @@ let userSchema = new Schema({
 
 The `tweets: [tweetSchema]` line sets up the embedded data association. The `[]` tells the schema to expect a collection, and `tweetSchema` (or `Tweet.schema` if you had a `Tweet` model defined already) tells the schema that the collection will hold *embedded* documents of type `Tweet`.
 
+</details>
+
 #### 2) Manipulate Data with Models
 
+<details>
+	<summary>Solution</summary>
 ```js
 let User = mongoose.model("User", userSchema);
 let Tweet = mongoose.model("Tweet", tweetSchema);
 ```
+</details>
 
 #### 3) Export Models
 
@@ -461,7 +469,7 @@ module.exports = { User, Tweet }
 ```
 </details>
 
-#### Independent Practice: Users & Tweets
+####  Users & Tweets
 
 1. Create a user.
 1. Create tweets embedded in that user.
@@ -472,8 +480,10 @@ module.exports = { User, Tweet }
 
 **CREATE USER**
 
-`index.js`
+<details>
+	<summary>Solution</summary>
 
+`index.js`
 ```js
 let User = require('./models/user').User
 let Tweet = require('./models/user').Tweet
@@ -491,9 +501,14 @@ app.post('/api/users', (req, res) => {
 })
 ```
 
+</details>
+
 ![](https://i.imgur.com/1fyubyV.png)
 
 **CREATE TWEET**
+
+<details>
+	<summary>Solution</summary>
 
 ```js
 // create tweet embedded in user
@@ -510,8 +525,12 @@ app.post('/api/users/:userId/tweets', (req, res) => {
   });
 });
 ```
+</details>
 
 **UPDATE TWEET**
+
+<details>
+	<summary>Solution</summary>
 
 ```js
 // update tweet embedded in user
@@ -532,6 +551,7 @@ app.put('/api/users/:userId/tweets/:id', (req, res) => {
   });
 });
 ```
+</details>
 
 ### Route Design
 
@@ -551,6 +571,5 @@ Remember RESTful routing? It's the most popular modern convention for designing 
 | DELETE | /stores/:store_id/items/:item_id | Delete an item from a store | <details><summary>click for ideas</summary>`.findOne`, `.remove`</details> |
 
 *In routes, avoid nesting resources more than one level deep.*
-
 
 - Refactor the routes into individual controller files using [express.Router()](https://expressjs.com/en/guide/routing.html)
