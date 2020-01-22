@@ -555,11 +555,11 @@ app.put('/api/users/:userId/tweets/:id', (req, res) => {
 
 **Refactor the routes into individual controller files using [express.Router()]**(https://expressjs.com/en/guide/routing.html)
 
-### Route Design
+### Additional information about Route Design
 
 Remember RESTful routing? It's the most popular modern convention for designing resource paths for nested data. Here is an example of an application that has routes for `Store` and `Item` models:
 
-### RESTful Routing
+### Additional information about RESTful Routing
 | | | | |
 |---|---|---|---|
 | **HTTP Verb** | **Path** | **Description** | **Key Mongoose Method(s)** |
