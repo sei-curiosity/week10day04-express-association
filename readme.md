@@ -393,6 +393,8 @@ On which of the following routes are you most likely to `populate` all the ingre
 
 <br>
 
+## LABTIME:
+
 ## Implementation: Embedded
 
 Imagine you have a database of `User`s, each with many embedded `Tweet`s. If you needed to update or delete a tweet, you would first need to find the correct user, then the tweet to update or delete.
@@ -550,7 +552,5 @@ Remember RESTful routing? It's the most popular modern convention for designing 
 
 *In routes, avoid nesting resources more than one level deep.*
 
-
-## LABTIME
 
 - Refactor the routes into individual controller files using [express.Router()](https://expressjs.com/en/guide/routing.html)
