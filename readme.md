@@ -553,6 +553,8 @@ app.put('/api/users/:userId/tweets/:id', (req, res) => {
 ```
 </details>
 
+- Refactor the routes into individual controller files using [express.Router()](https://expressjs.com/en/guide/routing.html)
+
 ### Route Design
 
 Remember RESTful routing? It's the most popular modern convention for designing resource paths for nested data. Here is an example of an application that has routes for `Store` and `Item` models:
@@ -572,4 +574,4 @@ Remember RESTful routing? It's the most popular modern convention for designing 
 
 *In routes, avoid nesting resources more than one level deep.*
 
-- Refactor the routes into individual controller files using [express.Router()](https://expressjs.com/en/guide/routing.html)
+
